@@ -9,6 +9,7 @@
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
+    <!-- data-sizing is a customize dataset -->
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
     <label for="blur">Blur:</label>
@@ -31,7 +32,7 @@
     img {
       padding: var(--spacing);
       background: var(--base);
-      filter: var(--blur);
+      filter: blur(var(--blur));
     }
 
     .h1 {
@@ -61,6 +62,19 @@
   </style>
 
   <script>
+    function handleUpdate() {
+
+      // get the changes of the px or ''
+      const suffix = this.dataset.sizing || '';
+
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+
+
+    }
+    document.querySelectorAll('.controls input').forEach(function(ele) {
+      ele.addEventListener('change', handleUpdate);
+      ele.addEventListener('mousemove', handleUpdate);
+    })
   </script>
 
 </body>
