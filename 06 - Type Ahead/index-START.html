@@ -31,6 +31,14 @@ function findMatches(wordToMatch, cities) {
   })
 }
 
+function displayMatches() {
+  const matchArray = findMatches(this.value, cities);
+  console.log(matchArray);
+}
+
+const searchInput = document.querySelector('.search');
+searchInput.addEventListener('keyup', displayMatches);
+
 </script>
 </body>
 </html>
