@@ -5,8 +5,22 @@
   <title>HTML5 Canvas</title>
 </head>
 <body>
-<canvas id="draw" width="800" height="800"></canvas>
+<!-- canvas is HTML element -->
+<!-- canvas only has width and height attributes -->
+<!-- initially 300 pixels by 150 pixels -->
+<!-- older browsers such as IE version 9 -->
+<!-- requires close tag </canvas> -->
+<canvas id="draw" width="800" height="800">
+  this is a fallback conetent
+  if the browser doesn't support canvas
+  container will be ignored and render the fallback conetent
+</canvas>
 <script>
+  const canvas = document.getElementById('draw');
+// to display convas, get getContext() to access the rendering context and draw on it
+  const ctx = canvas.getContext('2d');
+
+  
 </script>
 
 <style>
