@@ -26,8 +26,10 @@
 
   // color of the storke
   ctx.strokeStyle = '#BADA55';
+  // lineJoin and lineCap will make a smooth line
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
+  ctx.lineWidth = 20;
 
   let isDrawing = false;
   let lastX = 0;
@@ -40,14 +42,23 @@
     // beginPath() is called before beginning of each line
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath
     ctx.beginPath();
+    // start from
     ctx.moveTo(lastX, lastY);
+    // go to
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
+    // lastX = e.offsetX;
+    // lastY = e.offsetY;
+    // destructoring an array ES6
+    [lastX, lastY] = [e.offsetX, e.offsetY];
 
   }
 
   canvas.addEventListener('mousemove', draw);
-  canvas.addEventListener('mousedown', () => isDrawing = true );
+  canvas.addEventListener('mousedown', (e) => {
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+    });
   canvas.addEventListener('mouseup', () => isDrawing = false);
   canvas.addEventListener('mouseout', () => isDrawing = false);
 
