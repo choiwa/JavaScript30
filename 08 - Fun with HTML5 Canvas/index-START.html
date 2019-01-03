@@ -34,11 +34,12 @@
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
+  let hue = 0;
 
   function draw(e) {
     // stop the function from running when they are not mousedown
     if (!isDrawing) return;
-
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
     // beginPath() is called before beginning of each line
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath
     ctx.beginPath();
@@ -51,7 +52,7 @@
     // lastY = e.offsetY;
     // destructoring an array ES6
     [lastX, lastY] = [e.offsetX, e.offsetY];
-
+    hue++;
   }
 
   canvas.addEventListener('mousemove', draw);
