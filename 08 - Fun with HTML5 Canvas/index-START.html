@@ -24,6 +24,7 @@
 
   // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle
 
+  // color of the storke
   ctx.strokeStyle = '#BADA55';
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
@@ -33,7 +34,16 @@
   let lastY = 0;
 
   function draw(e) {
-    console.log(e);
+    // stop the function from running when they are not mousedown
+    if (!isDrawing) return;
+
+    // beginPath() is called before beginning of each line
+    // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+
   }
 
   canvas.addEventListener('mousemove', draw);
