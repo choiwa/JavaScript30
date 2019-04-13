@@ -242,7 +242,19 @@
       console.log(sliderImages);
 
       function checkSlide(e) {
-        console.log(e);
+        sliderImages.forEach(slideImage => {
+          const slideInAt =
+            (window.scrollY + window.innerHeight) - slideImage.height / 2;
+          const imageBottom = slideImage.offsetTop + slideImage.height;
+          const isHalfShown = slideInAt > slideImage.offsetTop;
+          const isNotScrollPast = window.scrollY < imageBottom;
+          if (isHalfShown && isNotScrollPast) {
+            slideImage.classList.add("active");
+          } else {
+            slideImage.classList.remove("active");
+          }
+          console.log(slideImage.classList);
+        });
       }
 
       window.addEventListener("scroll", debounce(checkSlide));
