@@ -56,7 +56,7 @@
     <script>
       const addItems = document.querySelector(".add-items");
       const itemsList = document.querySelector(".plates");
-      const items = [];
+      const items = JSON.parse(localStorage.getItem("items")) || [];
 
       addItems.addEventListener("submit", addItem);
 
@@ -70,6 +70,7 @@
 
         items.push(item);
         populateList(items, itemsList);
+        localStorage.setItem("items", JSON.stringify(items));
         this.reset();
       }
 
@@ -85,6 +86,8 @@
           })
           .join("");
       }
+
+      populateList(items, itemsList);
     </script>
   </body>
 </html>
