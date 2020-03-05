@@ -9,5 +9,12 @@ function getVideo() {
     .getUserMedia({ video: true, audio: false })
     .then(localMediaStream => {
       console.log(localMediaStream);
+      video.srcObject = localMediaStream;
+      video.play();
+    })
+    .catch(err => {
+      console.error(err);
     });
 }
+
+getVideo();
